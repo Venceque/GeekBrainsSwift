@@ -1,0 +1,106 @@
+import UIKit
+
+
+
+enum trunkState {
+    case full, empty
+}
+
+class Car {
+    
+    
+    
+    var color :String
+    var brand:String
+    var model:String
+    
+    
+    init(color:String,brand:String,model:String){
+        self.color = color
+        self.brand = brand
+        self.model = model
+        }
+    
+    func drive(){}
+    func stop(){}
+    
+}
+
+
+class TrunkCar:Car{
+    
+    
+    var trunkState : trunkState
+    
+    
+    
+    func checkTrunkState(tr:trunkState) -> trunkState {
+
+        if (self.trunkState == .empty){
+            print ("\(brand )\(model) trunck is empty")}
+        else if (self.trunkState == .full){
+            print ("\(brand )\(model) trunck is full")}
+        return tr
+
+    }
+    
+    
+    init(trunkstate:trunkState,color:String,brand:String,model:String) {
+        self.trunkState = trunkstate
+        super.init(color: color, brand: brand, model: model)
+    }
+    
+    
+    
+    override func drive() {
+        super.drive()
+        print("грузовик едет")
+        checkTrunkState(tr: trunkState)
+    }
+    
+    override func  stop() {
+        super.stop()
+        print("грузовик остановился")
+    }
+}
+
+
+
+class SportCar:Car{
+    
+    var lockedSpeedLimit:Int
+    
+    init(lockedSpeedLimit:Int,color:String,brand:String,model:String){
+        self.lockedSpeedLimit = lockedSpeedLimit
+        super.init(color: color, brand: brand, model: model)
+    }
+    
+    
+    override func drive() {
+        super.drive()
+        print("спортивная тачка едет")
+    
+    }
+    
+    override func  stop() {
+        super.stop()
+        print("спортивная тачка остановилась")
+    }
+    
+}
+
+
+var ferrari = SportCar(lockedSpeedLimit: 250, color: "red", brand: "ferrari", model: "488 Spider")
+var iveco = TrunkCar(trunkstate: .empty, color: "белый", brand: "Iveco", model: "222")
+ferrari.drive()
+ferrari.stop()
+print(ferrari.color)
+print(ferrari.lockedSpeedLimit)
+
+iveco.drive()
+iveco.stop()
+print(iveco.trunkState)
+print(iveco.color)
+
+
+
